@@ -3,4 +3,4 @@ export interface INoteProps {
   createdAt: string;
   user: string;
   note: string;
-}
+};

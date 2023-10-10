@@ -13,4 +13,4 @@ describe('NoteList component', () => {
       expect(getByText(NoteListProp.createdAt)).toHaveTextContent(NoteListProp.createdAt);
     })
   })
-})
+});
