@@ -5,11 +5,19 @@ import {useAppState} from "./useAppState";
 
 function App() {
 
-  const {handleClick, notesData, loadBtnText} = useAppState();
+  const {handleLoadBtnClick, notesData, loadBtnText, postData} = useAppState();
+  const testNote = {
+    "note": "test note"
+  };
+
+  const testPost = () => {
+    postData(testNote);
+  };
 
   return (
     <div className="App">
-      <button onClick={handleClick}>{loadBtnText}</button>
+      <button onClick={handleLoadBtnClick}>{loadBtnText}</button>
+      <button onClick={testPost}>Post</button>
       <NoteList notes={notesData}/>
     </div>
   );

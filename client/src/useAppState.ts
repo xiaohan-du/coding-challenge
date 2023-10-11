@@ -42,15 +42,36 @@ export const useAppState = (): IAppStateProps => {
     fetchData(6);
   }, [fetchData]);
 
-  const handleClick = () => {
+  const handleLoadBtnClick = () => {
     setLoadBtnText(loadBtnText === 'Load All Notes' ? 'Load Notes within Last 6 Months' : 'Load All Notes');
     setFetchPastNMonths(fetchPastNMonths === 0 ? 6 : 0);
     fetchData(fetchPastNMonths);
   };
 
+  const postData = async (noteData: INoteProps) => {
+    try {
+      const response = await fetch('http://localhost:3000/api/notes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(noteData),
+      });
+
+      if (response.status === 201) {
+        console.log('Post successfully');
+      } else {
+        throw new Error('Failed to post');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
   return {
-    handleClick,
+    handleLoadBtnClick,
     notesData,
-    loadBtnText
+    loadBtnText,
+    postData
   };
 };
