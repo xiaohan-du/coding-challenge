@@ -2,16 +2,18 @@ import React, {useState, useCallback} from "react";
 import "./App.css";
 import { useEffect } from "react";
 import NoteList from "./components/NoteList/NoteList";
+import {INoteProps} from "./interfaces/INoteProps";
 
 function App() {
-  const [notesData, setNotesData] = useState([]);
-
-  const calcDate = (nMonths: number) => {
+  const [notesData, setNotesData] = useState<INoteProps[]>([]);
+  const [loadBtnText, setLoadBtnText] = useState<string>('Load All Notes');
+  const [fetchPastNMonths, setFetchPastNMonths] = useState<number>(0);
+  const calcDate = (nMonthsAhead: number): string => {
     const todaysDate = new Date();
-    const nMonthAheadDate = todaysDate.setMonth(todaysDate.getMonth() - nMonths);
+    const nMonthAheadDate = todaysDate.setMonth(todaysDate.getMonth() - nMonthsAhead);
     const nMonthAheadDateFormatted = new Date(nMonthAheadDate).toISOString().split('T')[0]
     return nMonthAheadDateFormatted;
-  }
+  };
 
   const fetchData = useCallback(async (nMonths: number) => {
     const formattedDate = calcDate(nMonths);
@@ -28,7 +30,7 @@ function App() {
         throw new Error('Response error');
       }
 
-      const responseData = await response.json();
+      const responseData: INoteProps[] = await response.json();
       setNotesData(responseData);
       console.log(responseData)
     } catch (error) {
@@ -40,8 +42,15 @@ function App() {
     fetchData(6);
   }, [fetchData]);
 
+  const handleClick = () => {
+    setLoadBtnText(loadBtnText === 'Load All Notes' ? 'Load Notes within Last 6 Months' : 'Load All Notes');
+    setFetchPastNMonths(fetchPastNMonths === 0 ? 6 : 0);
+    fetchData(fetchPastNMonths);
+  };
+
   return (
     <div className="App">
+      <button onClick={handleClick}>{loadBtnText}</button>
       <NoteList notes={notesData}/>
     </div>
   );
