@@ -1,36 +1,15 @@
-import React, {useState} from "react";
+import React from "react";
 import "./App.css";
-import { useEffect } from "react";
 import NoteList from "./components/NoteList/NoteList";
+import {useAppState} from "./useAppState";
 
 function App() {
-  const [notesData, setNotesData] = useState([]);
-  useEffect(() => {
-    fetchData();
-  }, []);
 
-  const fetchData = async () => {
-    try {
-      const response = await fetch('http://localhost:3000/api/notes', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
+  const {handleClick, notesData, loadBtnText} = useAppState();
 
-      if (!response.ok) {
-        throw new Error('Response error');
-      }
-
-      const responseData = await response.json();
-      setNotesData(responseData);
-      console.log(responseData)
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
   return (
     <div className="App">
+      <button onClick={handleClick}>{loadBtnText}</button>
       <NoteList notes={notesData}/>
     </div>
   );
