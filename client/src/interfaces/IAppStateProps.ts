@@ -5,4 +5,8 @@ export interface IAppStateProps {
   notesData: INoteProps[];
   loadBtnText: string;
   postData: (noteData: INoteProps) => void;
+  postResponseMessage: string;
+  isModalOpen: boolean;
+  openModal: () => void;
+  closeModal: () => void;
 };

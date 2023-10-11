@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Note.module.scss';
 import {INoteProps} from "../../interfaces/INoteProps";
 
-const Note: React.FC<INoteProps> = ({ id, createdAt, user, note }) => {
+const Note = ({ id, createdAt, user, note }: INoteProps) => {
   return (
     <div className={styles.noteContainer}>
       <div>{id}</div>

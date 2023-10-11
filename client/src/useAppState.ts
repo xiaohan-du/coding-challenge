@@ -8,6 +8,15 @@ export const useAppState = (): IAppStateProps => {
   const [notesData, setNotesData] = useState<INoteProps[]>([]);
   const [loadBtnText, setLoadBtnText] = useState<string>('Load All Notes');
   const [fetchPastNMonths, setFetchPastNMonths] = useState<number>(0);
+  const [postResponseMessage, setPostResponseMessage] = useState<string>('');
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   const calcDate = (nMonthsAhead: number): string => {
     const todaysDate = new Date();
     const nMonthAheadDate = todaysDate.setMonth(todaysDate.getMonth() - nMonthsAhead);
@@ -28,14 +37,14 @@ export const useAppState = (): IAppStateProps => {
 
       if (!response.ok) {
         throw new Error('Response error');
-      }
+      };
 
       const responseData: INoteProps[] = await response.json();
       setNotesData(responseData);
-      console.log(responseData)
+      console.log(responseData);
     } catch (error) {
       console.error('Error fetching data:', error);
-    }
+    };
   }, []);
 
   useEffect(() => {
@@ -60,10 +69,13 @@ export const useAppState = (): IAppStateProps => {
 
       if (response.status === 201) {
         console.log('Post successfully');
+        setPostResponseMessage('Post successfully');
       } else {
+        setPostResponseMessage('Post failed');
         throw new Error('Failed to post');
       }
     } catch (error) {
+      setPostResponseMessage('Post failed');
       console.error('Error:', error);
     }
   };
@@ -72,6 +84,10 @@ export const useAppState = (): IAppStateProps => {
     handleLoadBtnClick,
     notesData,
     loadBtnText,
-    postData
+    postData,
+    postResponseMessage,
+    isModalOpen,
+    openModal,
+    closeModal
   };
 };
