@@ -15,7 +15,8 @@ function App() {
     closeModal,
     showResponseMessage,
     handleInputChange,
-    handleConfirm
+    handleModalSubmit,
+    inputValue
   } = useAppState();
 
   return (
@@ -27,7 +28,8 @@ function App() {
         responseMessage={responseMessage}
         showResponseMessage={showResponseMessage}
         handleInputChange={handleInputChange}
-        handleConfirm={handleConfirm}
+        handleModalSubmit={handleModalSubmit}
+        inputValue={inputValue}
       />
       <button onClick={handleLoadBtnClick}>{loadBtnText}</button>
       <NoteList notes={notesData}/>
