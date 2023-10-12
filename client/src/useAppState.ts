@@ -1,4 +1,4 @@
-import {useState, useCallback} from "react";
+import React, {useState, useCallback} from "react";
 import "./App.css";
 import { useEffect } from "react";
 import {INoteProps} from "./interfaces/INoteProps";
@@ -8,6 +8,15 @@ export const useAppState = (): IAppStateProps => {
   const [notesData, setNotesData] = useState<INoteProps[]>([]);
   const [loadBtnText, setLoadBtnText] = useState<string>('Load All Notes');
   const [fetchPastNMonths, setFetchPastNMonths] = useState<number>(0);
+  const [responseMessage, setResponseMessage] = useState<string>('');
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   const calcDate = (nMonthsAhead: number): string => {
     const todaysDate = new Date();
     const nMonthAheadDate = todaysDate.setMonth(todaysDate.getMonth() - nMonthsAhead);
@@ -28,14 +37,14 @@ export const useAppState = (): IAppStateProps => {
 
       if (!response.ok) {
         throw new Error('Response error');
-      }
+      };
 
       const responseData: INoteProps[] = await response.json();
       setNotesData(responseData);
-      console.log(responseData)
+      console.log(responseData);
     } catch (error) {
       console.error('Error fetching data:', error);
-    }
+    };
   }, []);
 
   useEffect(() => {
@@ -60,18 +69,42 @@ export const useAppState = (): IAppStateProps => {
 
       if (response.status === 201) {
         console.log('Post successfully');
+        setResponseMessage('Post successfully');
       } else {
+        setResponseMessage('Post failed');
         throw new Error('Failed to post');
       }
     } catch (error) {
+      setResponseMessage('Post failed');
       console.error('Error:', error);
     }
+  };
+
+  const initialNoteProps: INoteProps = {
+    note: ''
+  };
+  const [inputValue, setInputValue] = useState<INoteProps>(initialNoteProps);
+  const [showResponseMessage, setShowResponseMessage] = useState<boolean>(false);
+  const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setInputValue({note: event.target.value});
+    setShowResponseMessage(false);
+  };
+
+  const handleConfirm = () => {
+    postData(inputValue);
+    setShowResponseMessage(true);
   };
 
   return {
     handleLoadBtnClick,
     notesData,
     loadBtnText,
-    postData
+    responseMessage,
+    isModalOpen,
+    openModal,
+    closeModal,
+    showResponseMessage,
+    handleInputChange,
+    handleConfirm
   };
 };

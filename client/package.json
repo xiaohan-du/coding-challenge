@@ -1,6 +1,7 @@
 {
   "name": "client",
   "jest": {
+    "testMatch": ["<rootDir>/src/**/*.test.tsx"],
     "watchPathIgnorePatterns": ["incomingProps"]
   },
   "version": "0.1.0",
