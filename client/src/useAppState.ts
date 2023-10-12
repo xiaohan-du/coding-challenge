@@ -90,18 +90,21 @@ export const useAppState = (): IAppStateProps => {
     setShowResponseMessage(false);
   };
 
+  const handleConfirm = () => {
+    postData(inputValue);
+    setShowResponseMessage(true);
+  };
+
   return {
     handleLoadBtnClick,
     notesData,
     loadBtnText,
-    postData,
     responseMessage,
     isModalOpen,
     openModal,
     closeModal,
-    inputValue,
     showResponseMessage,
-    setShowResponseMessage,
-    handleInputChange
+    handleInputChange,
+    handleConfirm
   };
 };

@@ -9,15 +9,13 @@ function App() {
     handleLoadBtnClick,
     notesData,
     loadBtnText,
-    postData,
     responseMessage,
     isModalOpen,
     openModal,
     closeModal,
-    inputValue,
     showResponseMessage,
-    setShowResponseMessage,
-    handleInputChange
+    handleInputChange,
+    handleConfirm
   } = useAppState();
 
   return (
@@ -26,12 +24,10 @@ function App() {
       <Modal
         isModalOpen={isModalOpen}
         closeModal={closeModal}
-        postData={postData}
         responseMessage={responseMessage}
-        inputValue={inputValue}
         showResponseMessage={showResponseMessage}
-        setShowResponseMessage={setShowResponseMessage}
         handleInputChange={handleInputChange}
+        handleConfirm={handleConfirm}
       />
       <button onClick={handleLoadBtnClick}>{loadBtnText}</button>
       <NoteList notes={notesData}/>

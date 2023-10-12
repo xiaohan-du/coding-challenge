@@ -1,12 +1,7 @@
 import React from 'react';
 import {IModalProps} from "../../interfaces/IModalProps";
 import styles from './Modal.module.scss';
-const Modal = ({ isModalOpen, closeModal, postData, responseMessage, inputValue, showResponseMessage, setShowResponseMessage, handleInputChange }: IModalProps) => {
-
-  const handleConfirm = () => {
-    postData(inputValue);
-    setShowResponseMessage(true);
-  };
+const Modal = ({ isModalOpen, closeModal, responseMessage, showResponseMessage, handleInputChange, handleConfirm }: IModalProps) => {
 
   return (
     <div className={`${isModalOpen ? styles.modalShow : styles.modalHide}`}>
