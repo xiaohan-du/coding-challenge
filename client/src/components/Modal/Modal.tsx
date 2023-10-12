@@ -7,6 +7,7 @@ const Modal = ({ isModalOpen, closeModal, responseMessage, showResponseMessage, 
     <div className={`${isModalOpen ? styles.modalShow : styles.modalHide}`}>
       <div className={styles.modalContent}>
         <textarea
+          placeholder={'Enter note...'}
           onChange={handleInputChange}
         />
         {
