@@ -8,10 +8,11 @@ const Modal = ({ isModalOpen, closeModal, responseMessage, showResponseMessage, 
       <form onSubmit={handleModalSubmit}>
         <div className={styles.modalContent}>
           <textarea
-            placeholder={'Enter note...'}
+            placeholder={'Enter note, max 500 characters'}
             onChange={handleInputChange}
             value={inputValue.note}
             name={'note'}
+            maxLength={500}
           />
           {
             showResponseMessage ? <p>{responseMessage}</p> : ''

@@ -22,7 +22,8 @@ export const useAppState = (): IAppStateProps => {
     setIsModalOpen(true);
   };
 
-  const closeModal = () => {
+  const closeModal = (event: React.FormEvent<HTMLButtonElement>) => {
+    event.preventDefault();
     setIsModalOpen(false);
   };
   const calcDate = (nMonthsAhead: number): string => {
@@ -86,8 +87,6 @@ export const useAppState = (): IAppStateProps => {
       console.error('Error:', error);
     }
   };
-
-
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputValue((prevInputValue) => ({
