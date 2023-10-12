@@ -1,4 +1,4 @@
-import {useState, useCallback} from "react";
+import React, {useState, useCallback} from "react";
 import "./App.css";
 import { useEffect } from "react";
 import {INoteProps} from "./interfaces/INoteProps";
@@ -8,7 +8,7 @@ export const useAppState = (): IAppStateProps => {
   const [notesData, setNotesData] = useState<INoteProps[]>([]);
   const [loadBtnText, setLoadBtnText] = useState<string>('Load All Notes');
   const [fetchPastNMonths, setFetchPastNMonths] = useState<number>(0);
-  const [postResponseMessage, setPostResponseMessage] = useState<string>('');
+  const [responseMessage, setResponseMessage] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const openModal = () => {
     setIsModalOpen(true);
@@ -69,15 +69,25 @@ export const useAppState = (): IAppStateProps => {
 
       if (response.status === 201) {
         console.log('Post successfully');
-        setPostResponseMessage('Post successfully');
+        setResponseMessage('Post successfully');
       } else {
-        setPostResponseMessage('Post failed');
+        setResponseMessage('Post failed');
         throw new Error('Failed to post');
       }
     } catch (error) {
-      setPostResponseMessage('Post failed');
+      setResponseMessage('Post failed');
       console.error('Error:', error);
     }
+  };
+
+  const initialNoteProps: INoteProps = {
+    note: ''
+  };
+  const [inputValue, setInputValue] = useState<INoteProps>(initialNoteProps);
+  const [showResponseMessage, setShowResponseMessage] = useState<boolean>(false);
+  const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setInputValue({note: event.target.value});
+    setShowResponseMessage(false);
   };
 
   return {
@@ -85,9 +95,13 @@ export const useAppState = (): IAppStateProps => {
     notesData,
     loadBtnText,
     postData,
-    postResponseMessage,
+    responseMessage,
     isModalOpen,
     openModal,
-    closeModal
+    closeModal,
+    inputValue,
+    showResponseMessage,
+    setShowResponseMessage,
+    handleInputChange
   };
 };

@@ -1,10 +1,7 @@
 import React from 'react';
 import {IModalProps} from "../../interfaces/IModalProps";
 import styles from './Modal.module.scss';
-import {useModalState} from "./useModalState";
-const Modal = ({ show, onClose, postData, responseMessage }: IModalProps) => {
-
-  const {inputValue, showResponseMessage, setShowResponseMessage, handleInputChange} = useModalState();
+const Modal = ({ isModalOpen, closeModal, postData, responseMessage, inputValue, showResponseMessage, setShowResponseMessage, handleInputChange }: IModalProps) => {
 
   const handleConfirm = () => {
     postData(inputValue);
@@ -12,7 +9,7 @@ const Modal = ({ show, onClose, postData, responseMessage }: IModalProps) => {
   };
 
   return (
-    <div className={`${show ? styles.modalShow : styles.modalHide}`}>
+    <div className={`${isModalOpen ? styles.modalShow : styles.modalHide}`}>
       <div className={styles.modalContent}>
         <textarea
           onChange={handleInputChange}
@@ -22,7 +19,7 @@ const Modal = ({ show, onClose, postData, responseMessage }: IModalProps) => {
         }
         <div className={styles.modalBtnGroup}>
           <button onClick={handleConfirm}>Confirm</button>
-          <button onClick={onClose}>Close</button>
+          <button onClick={closeModal}>Close</button>
         </div>
       </div>
     </div>
