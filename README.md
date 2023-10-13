@@ -1,17 +1,15 @@
-# Frontend-focused Challenge
+# Frontend-focused Challenge: An Evernote-inspired UI
 
 ```
-TIMEBOX: 3-4 hours
-STACK: React/TypeScript + libraries of your choice for e.g. components
-TESTS: Enough to showcase what good testing looks like to you
-DOCS: Nice to have, not mandatory
+STACK: React/TypeScript + SCSS + React-testing-library, tried to use Tailwind CSS but version of the create-react-app was too old
+TESTS: Enough to showcase what good testing looks like
 ```
 
 ## Error when starting the React app: 
 ```
 Error: error:0308010C:digital envelope routines::unsupported
 ```
-### In Bash, run this first: 
+In Bash, run this first: 
 ```
 export NODE_OPTIONS=--openssl-legacy-provider
 ```
@@ -20,93 +18,72 @@ export NODE_OPTIONS=--openssl-legacy-provider
 
 This challenge is to implement a small set of UI functionality providing the ability to create and interact with a list of notes.
 
-We have provided a small API to interact with and a set of requirements for the desired solution, as well as a scaffolded client Create React App project to help you get started.
+## Features:
 
-It is important to note that this is by no means a test with a single correct answer in terms of structure and code, we're wanting to get a sense for how you take a set of requirements and spike a holistic solution that demonstrates your craftsmanship and approach to building software.
+An **_Evernote-inspired_** UI was built:
+![image](https://github.com/xiaohan-du/coding-challenge/assets/16627563/ff962407-092f-410b-90a1-19a052a408eb)
+which includes the following functionalities:
 
-## The Challenge
+- The UI provides a list of notes currently in the system
+- The UI lists notes created within the last 6 months only by default
+- The UI offers a toggle button to switch between displaying all notes or only those from the last 6 months.
+- The UI allows users to create a new note. Clicking the "New Note" button opens a modal.
+- The UI provides validation and feedback for the following when creating a new note:
+  - A message if the note is empty: "Please enter a valid note of less than 500 characters."
+  - User input automatically stops if the note exceeds 500 characters.
+- The UI provides sticky buttons, so when users scroll down, the "New Note" and toggle buttons remain accessible. This provides a better user experience.
+- The UI is responsive and works across all screen widths.
 
-Using the provided API (documented in more detail below), build a small UI fulfilling the following criteria:
-
-- The UI should provide a list of notes currently in the system
-- The UI should list notes created within the last 6 months only by default
-- The UI should provide the ability to toggle the list to display all notes
-- The UI should provide the ability to create a new note using a modal
-- The UI should validate and provide feedback for the following when creating a new note:
-  - The note itself is required
-  - The note cannot exceed 500 characters
-
-You do not need to build a full application shell, we're more interested in the above functionality.
-
-## Getting Started
-
-### Running the Backend
-
-From the root directory:
+## Project Architecture :
 
 ```
-cd api && npm install && npm run serve
+├── client
+│   ├── src
+│   │   ├── components
+│   │   │   ├── Note
+│   │   │   │   ├── __tests__
+│   │   │   │   │   ├── incomingProps
+│   │   │   │   │   │   └── NoteProps.ts
+│   │   │   │   │   └── Note.test.tsx
+│   │   │   │   ├── Note.tsx
+│   │   │   │   └── Note.module.scss
+│   │   │   └── ...
+│   │   ├── interfaces
+│   │   │   ├── INoteProps.ts
+│   │   │   └── ...
+│   │   ├── App.scss
+│   │   ├── App.tsx
+│   │   ├── useAppState.ts
+│   │   ├── color.scss
+│   │   ├── mixins.scss
+│   │   ├── index.scss
+│   │   ├── index.tsx
+│   │   └── ...
+│   ├── ...
+│   └── package.json
+└── 
 ```
 
-The API will be listening at http://localhost:8080 once started, however the client project has proxying set-up to avoid CORS issues.
+The project architecture adheres to the following key principles:
 
-### Running the Client
+- `App.tsx` is the main page that calls components.
+  - It relies on `useAppState.ts` to interact with the API and manage states.
+  - `useAppState.ts` stores all functions and props
+- Components are organized in the components folder. Each component consists of:
+  - A `.tsx` file for rendering the UI.
+  - A `.module.scss` file for storing styles.
+  - A `__tests__` folder for unit tests.
+- In the `__tests__` folder, there is
+  - A `.test.tsx` file to run unit tests.
+  - An `incomingProps` folder to store mock props if necessary.
+- An `interfaces` folder is used to store and export all interfaces for use in components and pages.
+- The SCSS follows the [BEM](https://getbem.com/) methodology.
+ 
+### Architecture Features:
+- Data and UI are separated. Data is only processed in `useAppState.ts`, UI is only rendered in component `.tsx` file
+- This makes UI rendering faster and unit testing easier
+- No more messy states in components
 
-From the root directory:
-
-```
-cd client && npm install && npm start
-```
-
-The client app will be listening at http://localhost:3000 once started and will proxy any local requests to the API for ease of use.
-
-## API
-
-### `GET /api/notes`
-
-#### Parameters
-
-| Name   | Type | In    | Description                             |
-| :----- | :--- | ----- | --------------------------------------- |
-| `from` | Date | query | List notes created after this date only |
-
-#### Response
-
-```
-Status: 200 OK
-```
-
-```json
-[
-  {
-    "id": 30,
-    "createdAt": "2021-07-17T18:04:38.040Z",
-    "user": "Hoyt Braun",
-    "note": "Sit iusto odit amet itaque sequi error laudantium fugit aperiam accusamus et mollitia est et necessitatibus iusto maxime sunt sed incidunt ut saepe quidem aspernatur modi consectetur illum qui vero."
-  }
-]
-```
-
-### `POST /api/notes`
-
-#### Parameters
-
-| Name   | Type   | In   | Description                           |
-| :----- | :----- | ---- | ------------------------------------- |
-| `note` | string | body | **Required.** The content of the note |
-
-#### Response
-
-```
-Status: 201 Created
-```
-
-## Do I Need to Write Tests?
-
-We want to get a sense for how you write code and solve problems so treat this as any other piece of code you would deliver. We are not looking for a comprehensive suite and 100% coverage, just enough to understand what you think is important in terms of tests and quality.
-
-## Submitting Your Challenge
-
-- Please submit your challenge as a git repository.
-- You can either create a repository on your favourite git hosting provider (GitHub, GitLab, BitBucket) and share the link.
-- Or send the whole repository, zipped (including the .git directory!). Please include both build and run instructions.
+## Possible improvements
+- A fancier UI?
+- New note could be fetched without clicking th toggle button.
