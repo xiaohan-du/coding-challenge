@@ -1,20 +1,37 @@
+@import './src/color';
+
 .note {
   &Container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    border: 1px solid black;
+    justify-content: space-between;
+    border: 0.0625rem solid $gray-86;
     border-radius: 1rem;
     padding: 1rem;
+    transition: box-shadow 0.3s ease;
+    &:hover {
+      box-shadow: 0.0625rem 0.0625rem 0.25rem rgba(134, 134, 134, 0.3);
+    }
+  }
+  &Main {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: $text-primary;
   }
   &DateTime {
     font-size: 1rem;
+    color: $text-primary;
   }
   &User {
     font-size: 1rem;
+    font-weight: 600;
+    word-break: break-word;
   }
   &Content {
     font-size: 1rem;
     text-align: left;
+    word-break: break-word;
   }
 }

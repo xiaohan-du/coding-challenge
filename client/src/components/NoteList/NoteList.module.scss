@@ -1,0 +1,29 @@
+@import 'src/color';
+
+.noteList {
+  &Container {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0.0625rem 0.125rem 0.25rem $black-transparent;
+    margin: 2rem auto;
+    transition: box-shadow 0.3s ease;
+    &:hover {
+      box-shadow: 0.625rem 1.25rem 2.5rem $black-transparent;
+    }
+  }
+  &Content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 3rem;
+  }
+  &Topbar {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+  }
+}

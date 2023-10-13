@@ -1,5 +1,5 @@
 import React, {useState, useCallback} from "react";
-import "./App.css";
+import "./App.scss";
 import { useEffect } from "react";
 import {INoteProps} from "./interfaces/INoteProps";
 import {IAppStateProps} from "./interfaces/IAppStateProps";
