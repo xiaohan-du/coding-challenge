@@ -49,7 +49,7 @@ An **_Evernote-inspired_** UI was built:
 ![image](https://github.com/xiaohan-du/coding-challenge/assets/16627563/ff962407-092f-410b-90a1-19a052a408eb)
 which includes the following functionalities:
 
-- The UI provides a list of notes currently in the system
+- The UI provides a list of notes currently in the system. If no data is returned, a warning message shows
 - The UI lists notes created within the last 6 months only by default
 - The UI offers a toggle button to switch between displaying all notes or only those from the last 6 months.
 - The UI allows users to create a new note. Clicking the "New Note" button opens a modal.
