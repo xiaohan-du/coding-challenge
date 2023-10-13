@@ -102,7 +102,7 @@ export const useAppState = (): IAppStateProps => {
     const textarea = form.elements.namedItem("note") as HTMLTextAreaElement;
     setShowResponseMessage(true);
     if (!textarea || !textarea.value) {
-      setResponseMessage('Please enter a valid note less than 500 characters');
+      setResponseMessage('Please enter a valid note of less than 500 characters');
     } else {
       postData(inputValue);
       setResponseMessage('Post Successfully');
