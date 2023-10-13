@@ -13,13 +13,14 @@ const Modal = ({ isModalOpen, closeModal, responseMessage, showResponseMessage, 
             value={inputValue.note}
             name={'note'}
             maxLength={500}
+            className={styles.modalTextarea}
           />
           {
-            showResponseMessage ? <p>{responseMessage}</p> : ''
+            showResponseMessage ? <p className={styles.modalResponse}>{responseMessage}</p> : ''
           }
           <div className={styles.modalBtnGroup}>
-            <button type="submit">Confirm</button>
-            <button onClick={closeModal}>Close</button>
+            <button className={`${styles.modalBtn} ${styles.modalBtnConfirm}`} type="submit">Confirm</button>
+            <button className={`${styles.modalBtn} ${styles.modalBtnClose}`} onClick={closeModal}>Close</button>
           </div>
         </div>
       </form>
