@@ -8,12 +8,14 @@ export const useAppState = (): IAppStateProps => {
   const initialNoteProps: INoteProps = {
     note: ''
   };
+  const apiUrl: string = 'http://localhost:3000/api/notes';
   const [notesData, setNotesData] = useState<INoteProps[]>([]);
   const [fetchPastNMonths, setFetchPastNMonths] = useState<number>(0);
   const [responseMessage, setResponseMessage] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<INoteProps>(initialNoteProps);
   const [showResponseMessage, setShowResponseMessage] = useState<boolean>(false);
+  const [isToggled, setIsToggled] = useState<boolean>(false);
   const openModal = () => {
     setResponseMessage('');
     setShowResponseMessage(false);
@@ -34,9 +36,9 @@ export const useAppState = (): IAppStateProps => {
 
   const fetchData = useCallback(async (nMonths: number) => {
     const formattedDate = calcDate(nMonths);
-    const apiUrl = 'http://localhost:3000/api/notes' + (nMonths !== 0 ? `/?from=${formattedDate}` : '');
+    const apiUrlFrom = apiUrl + (nMonths !== 0 ? `/?from=${formattedDate}` : '');
     try {
-      const response = await fetch(apiUrl, {
+      const response = await fetch(apiUrlFrom, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -66,7 +68,7 @@ export const useAppState = (): IAppStateProps => {
 
   const postData = async (noteData: INoteProps) => {
     try {
-      const response = await fetch('http://localhost:3000/api/notes', {
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -106,8 +108,6 @@ export const useAppState = (): IAppStateProps => {
       setResponseMessage('Post Successfully');
     };
   };
-
-  const [isToggled, setIsToggled] = useState(false);
 
   const handleToggle = () => {
     setIsToggled(!isToggled);

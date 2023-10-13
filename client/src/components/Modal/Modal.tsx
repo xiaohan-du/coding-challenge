@@ -16,7 +16,7 @@ const Modal = ({ isModalOpen, closeModal, responseMessage, showResponseMessage, 
             className={styles.modalTextarea}
           />
           {
-            showResponseMessage ? <p className={styles.modalResponse}>{responseMessage}</p> : ''
+            showResponseMessage && <p className={styles.modalResponse}>{responseMessage}</p>
           }
           <div className={styles.modalBtnGroup}>
             <button className={`${styles.modalBtn} ${styles.modalBtnConfirm}`} type="submit">Confirm</button>
