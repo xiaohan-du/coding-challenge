@@ -64,7 +64,7 @@ which includes the following functionalities:
 └── 
 ```
 
-The project architecture adheres to the following key principles:
+### Key Principles:
 
 - `App.tsx` is the main page that calls components.
   - It relies on `useAppState.ts` to interact with the API and manage states.
@@ -79,7 +79,7 @@ The project architecture adheres to the following key principles:
 - An `interfaces` folder is used to store and export all interfaces for use in components and pages.
 - The SCSS follows the [BEM](https://getbem.com/) methodology.
  
-### Architecture Features:
+### Features:
 - Data and UI are separated. Data is only processed in `useAppState.ts`, UI is only rendered in component `.tsx` file
 - This makes UI rendering faster and unit testing easier
 - No more messy states in components
