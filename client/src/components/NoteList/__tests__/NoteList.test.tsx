@@ -27,3 +27,11 @@ describe('NoteList component', () => {
     expect(toggleElement).toBeInTheDocument();
   });
 });
+
+describe('NoteList component warning', () => {
+  it('should show warning message when no data is returned from API', () => {
+    render(<NoteList notes={[]} isToggled={false} handleToggle={() => {}} />);
+    const warningMessage = screen.getByText('No data returned');
+    expect(warningMessage).toBeInTheDocument();
+  });
+});
