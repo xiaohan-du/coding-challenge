@@ -11,6 +11,22 @@ TESTS: Enough to showcase what good testing looks like
 
 API: `http://localhost:3000/api/notes`
 
+### `GET /api/notes`
+
+#### Parameters
+
+| Name   | Type | In    | Description                             |
+| :----- | :--- | ----- | --------------------------------------- |
+| `from` | Date | query | List notes created after this date only |
+
+### `POST /api/notes`
+
+#### Parameters
+
+| Name   | Type   | In   | Description                           |
+| :----- | :----- | ---- | ------------------------------------- |
+|  | string | body | **Required.** The content of the note |
+
 ## Error when starting the React app: 
 ```
 Error: error:0308010C:digital envelope routines::unsupported
