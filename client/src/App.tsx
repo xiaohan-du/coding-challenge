@@ -7,9 +7,9 @@ import Sidebar from "./components/Sidebar/Sidebar";
 
 function App() {
   const {
-    handleLoadBtnClick,
+    isToggled,
+    handleToggle,
     notesData,
-    loadBtnText,
     responseMessage,
     isModalOpen,
     openModal,
@@ -32,7 +32,7 @@ function App() {
         handleModalSubmit={handleModalSubmit}
         inputValue={inputValue}
       />
-        <NoteList notes={notesData} handleLoadBtnClick={handleLoadBtnClick} loadBtnText={loadBtnText}/>
+        <NoteList notes={notesData} isToggled={isToggled} handleToggle={handleToggle}/>
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import {INoteProps} from "./INoteProps";
-export interface INoteListProps {
+import {IToggleProps} from "./IToggleProps";
+export interface INoteListProps extends IToggleProps{
   notes: INoteProps[];
-  handleLoadBtnClick: () => void;
-  loadBtnText: string;
 };
