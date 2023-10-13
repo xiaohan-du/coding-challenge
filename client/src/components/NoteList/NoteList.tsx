@@ -2,11 +2,12 @@ import React from 'react';
 import {INoteListProps} from "../../interfaces/INoteListProps";
 import Note from "../Note/Note";
 import styles from './NoteList.module.scss';
-const NoteList = ({ notes, handleLoadBtnClick, loadBtnText }: INoteListProps) => {
+import Toggle from "../Toggle/Toggle";
+const NoteList = ({ notes, isToggled, handleToggle }: INoteListProps) => {
   return (
     <div className={styles.noteListContainer}>
       <div className={styles.noteListTopbar}>
-        <button onClick={handleLoadBtnClick}>{loadBtnText}</button>
+        <Toggle isToggled={isToggled} handleToggle={handleToggle} data-testid={'toggle'}/>
       </div>
       <div className={styles.noteListContent}>
         {notes.map((note) => {

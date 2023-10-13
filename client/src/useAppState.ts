@@ -9,7 +9,6 @@ export const useAppState = (): IAppStateProps => {
     note: ''
   };
   const [notesData, setNotesData] = useState<INoteProps[]>([]);
-  const [loadBtnText, setLoadBtnText] = useState<string>('Load All Notes');
   const [fetchPastNMonths, setFetchPastNMonths] = useState<number>(0);
   const [responseMessage, setResponseMessage] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -61,7 +60,6 @@ export const useAppState = (): IAppStateProps => {
   }, [fetchData]);
 
   const handleLoadBtnClick = () => {
-    setLoadBtnText(loadBtnText === 'Load All Notes' ? 'Load Notes within Last 6 Months' : 'Load All Notes');
     setFetchPastNMonths(fetchPastNMonths === 0 ? 6 : 0);
     fetchData(fetchPastNMonths);
   };
@@ -109,10 +107,17 @@ export const useAppState = (): IAppStateProps => {
     };
   };
 
+  const [isToggled, setIsToggled] = useState(false);
+
+  const handleToggle = () => {
+    setIsToggled(!isToggled);
+    handleLoadBtnClick();
+  };
+
   return {
-    handleLoadBtnClick,
+    isToggled,
+    handleToggle,
     notesData,
-    loadBtnText,
     responseMessage,
     isModalOpen,
     openModal,

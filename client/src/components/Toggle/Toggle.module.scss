@@ -1,0 +1,79 @@
+@import './src/color';
+
+.toggle {
+  position: relative;
+  display: flex;
+  width: 15rem;
+  height: 2.125rem;
+  border: 2px solid $gray-86;
+  border-radius: 2.125rem;
+
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+
+    &:checked + .slider {
+      background-color: white;
+    }
+
+    &:focus + .slider {
+      box-shadow: 0 0 0.0625rem white;
+    }
+  }
+
+  .labelText {
+    position: relative;
+    top: 65%;
+    transform: translateY(-50%);
+    z-index: 1;
+    width: 50%;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+  }
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+
+  &:before {
+    position: absolute;
+    content: "";
+    height: 1.625rem;
+    width: 7.5rem;
+    left: 0.3125rem;
+    bottom: 0.25rem;
+    background-color: $green;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 2.125rem;
+    color: white;
+  }
+
+  &.round {
+    border-radius: 2.125rem;
+  }
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 0.0625rem #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(6.875rem);
+  -ms-transform: translateX(6.875rem);
+  transform: translateX(6.875rem);
+}
