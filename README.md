@@ -4,6 +4,28 @@
 STACK: React/TypeScript + SCSS + React-testing-library, tried to use Tailwind CSS but version of the create-react-app was too old
 TESTS: Enough to showcase what good testing looks like
 ```
+## Getting Started:
+`cd api && npm install && npm run serve`
+
+`cd client && npm install && npm start`
+
+API: `http://localhost:3000/api/notes`
+
+### `GET /api/notes`
+
+#### Parameters
+
+| Name   | Type | In    | Description                             |
+| :----- | :--- | ----- | --------------------------------------- |
+| `from` | Date | query | List notes created after this date only |
+
+### `POST /api/notes`
+
+#### Parameters
+
+| Name   | Type   | In   | Description                           |
+| :----- | :----- | ---- | ------------------------------------- |
+|  | string | body | **Required.** The content of the note |
 
 ## Error when starting the React app: 
 ```
