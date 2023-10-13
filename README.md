@@ -4,6 +4,12 @@
 STACK: React/TypeScript + SCSS + React-testing-library, tried to use Tailwind CSS but version of the create-react-app was too old
 TESTS: Enough to showcase what good testing looks like
 ```
+## Getting Started:
+`cd api && npm install && npm run serve`
+
+`cd client && npm install && npm start`
+
+API: `http://localhost:3000/api/notes`
 
 ## Error when starting the React app: 
 ```
