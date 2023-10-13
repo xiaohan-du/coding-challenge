@@ -64,14 +64,6 @@
   }
 }
 
-input:checked + .slider {
-  background-color: #2196F3;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 0.0625rem #2196F3;
-}
-
 input:checked + .slider:before {
   -webkit-transform: translateX(6.875rem);
   -ms-transform: translateX(6.875rem);
