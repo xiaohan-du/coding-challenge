@@ -27,6 +27,9 @@ API: `http://localhost:3000/api/notes`
 | :----- | :----- | ---- | ------------------------------------- |
 |  | string | body | **Required.** The content of the note |
 
+## Run Unit Tests:
+`cd client && npm test`, after finishing, press `a` to run all tests.
+
 ## Error when starting the React app: 
 ```
 Error: error:0308010C:digital envelope routines::unsupported
