@@ -1,4 +1,5 @@
 @import 'src/color';
+@import 'src/mixins';
 
 .sidebar {
   &Container {
@@ -8,7 +9,7 @@
     width: 15%;
   }
   &Btn {
-    margin: 1rem 0;
+    //margin: 3rem 0;
     color: white;
     background: $green;
     border: none;
@@ -17,5 +18,31 @@
     height: 2.25rem;
     width: 100%;
     font-size: 1rem;
+    position: sticky;
+    top: 2rem;
+    &::before {
+      content: "+";
+      display: none;
+    }
+  }
+}
+
+@include responsive(md) {
+  .sidebar {
+    &Container {
+      width: 3.75rem;
+    }
+    &Btn {
+      border-radius: 1.5rem;
+      height: 2.25rem;
+      width: 2.25rem;
+      &::before {
+        display: block;
+        font-size: 2rem;
+      }
+      span {
+        display: none;
+      }
+    }
   }
 }

@@ -3,7 +3,7 @@
 .toggle {
   position: relative;
   display: flex;
-  width: 15rem;
+  width: 11.5rem;
   height: 2.125rem;
   border: 0.125rem solid $gray-86;
   border-radius: 2.125rem;
@@ -49,7 +49,7 @@
     position: absolute;
     content: "";
     height: 1.625rem;
-    width: 7.5rem;
+    width: 6rem;
     left: 0.3125rem;
     bottom: 0.25rem;
     background-color: $green;
@@ -65,7 +65,7 @@
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(6.875rem);
-  -ms-transform: translateX(6.875rem);
-  transform: translateX(6.875rem);
+  -webkit-transform: translateX(4.9rem);
+  -ms-transform: translateX(4.9rem);
+  transform: translateX(4.9rem);
 }

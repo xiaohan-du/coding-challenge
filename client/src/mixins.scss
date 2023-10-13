@@ -1,0 +1,32 @@
+@mixin responsive($breakpoint) {
+  @if $breakpoint == xs {
+    // Define styles for extra-small screens
+    @media (max-width: 575px) {
+      @content;
+    }
+  }
+  @else if $breakpoint == sm {
+    // Define styles for small screens
+    @media (max-width: 767px) {
+      @content;
+    }
+  }
+  @else if $breakpoint == md {
+    // Define styles for medium screens
+    @media (max-width: 991px) {
+      @content;
+    }
+  }
+  @else if $breakpoint == lg {
+    // Define styles for large screens
+    @media (max-width: 1199px) {
+      @content;
+    }
+  }
+  @else if $breakpoint == xl {
+    // Define styles for extra-large screens
+    @media (min-width: 1200px) {
+      @content;
+    }
+  }
+}
