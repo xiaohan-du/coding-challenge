@@ -1,8 +1,9 @@
 import React from "react";
-import "./App.css";
+import "./App.scss";
 import NoteList from "./components/NoteList/NoteList";
 import {useAppState} from "./useAppState";
 import Modal from "./components/Modal/Modal";
+import Sidebar from "./components/Sidebar/Sidebar";
 
 function App() {
   const {
@@ -21,7 +22,7 @@ function App() {
 
   return (
     <div className="App">
-      <button onClick={openModal}>Create A New Note</button>
+      <Sidebar openModal={openModal} />
       <Modal
         isModalOpen={isModalOpen}
         closeModal={closeModal}
@@ -31,8 +32,7 @@ function App() {
         handleModalSubmit={handleModalSubmit}
         inputValue={inputValue}
       />
-      <button onClick={handleLoadBtnClick}>{loadBtnText}</button>
-      <NoteList notes={notesData}/>
+        <NoteList notes={notesData} handleLoadBtnClick={handleLoadBtnClick} loadBtnText={loadBtnText}/>
     </div>
   );
 }

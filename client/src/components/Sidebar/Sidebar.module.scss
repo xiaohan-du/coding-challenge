@@ -1,0 +1,20 @@
+@import 'src/color';
+
+.sidebar {
+  &Container {
+    padding: 1rem;
+    background-color: $bg-dark;
+    height: auto;
+    width: 15%;
+  }
+  &Btn {
+    margin: 1rem 0;
+    color: white;
+    background: $green;
+    border: none;
+    cursor: pointer;
+    border-radius: 1.25rem;
+    height: 2.25rem;
+    width: 100%;
+  }
+}
