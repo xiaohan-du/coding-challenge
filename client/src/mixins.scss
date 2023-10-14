@@ -1,3 +1,5 @@
+@import 'color';
+
 @mixin responsive($breakpoint) {
   @if $breakpoint == xs {
     // Define styles for extra-small screens
@@ -29,4 +31,12 @@
       @content;
     }
   }
+}
+
+@mixin warning-message {
+  margin-bottom: -2rem;
+  padding: 0.625rem 1rem;
+  background-color: $warning-red;
+  border-radius: 0.5rem;
+  color: white;
 }

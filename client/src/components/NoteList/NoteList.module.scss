@@ -32,6 +32,10 @@
     top: 0;
     background-color: white;
   }
+  &Response {
+    @include warning-message;
+    margin-bottom: 1rem;
+  }
 }
 
 @include responsive(lg) {
