@@ -102,7 +102,7 @@ which includes the following functionalities:
   - A `.test.tsx` file to run unit tests.
   - An `incomingProps` folder to store mock props if necessary.
 - An `interfaces` folder is used to store and export all interfaces for use in components and pages.
-- The SCSS follows the [BEM](https://getbem.com/) methodology.
+- The SCSS follows the [BEM](https://getbem.com/) methodology, class naming convention follows: `.blockElementModifier`.
  
 ### Features:
 - Data and UI are separated. Data is only processed in `useAppState.ts`, UI is only rendered in component `.tsx` file
