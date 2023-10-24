@@ -1,11 +1,10 @@
 import React from 'react';
 import styles from './Toggle.module.scss';
 import {IToggleProps} from "../../interfaces/IToggleProps";
-const Toggle = ({isToggled, handleToggle}: IToggleProps) => {
+const Toggle = ({handleToggle}: IToggleProps) => {
 
   return (
-    <label className={`${styles.toggle} ${isToggled ? styles.on : styles.off}`}>
-
+    <label className={`${styles.toggle}`}>
       <input type="checkbox" onClick={handleToggle} />
       <span className={`${styles.slider} ${styles.round}`}></span>
       <span className={styles.labelText}>6 Months</span>

@@ -3,11 +3,11 @@ import {INoteListProps} from "../../interfaces/INoteListProps";
 import Note from "../Note/Note";
 import styles from './NoteList.module.scss';
 import Toggle from "../Toggle/Toggle";
-const NoteList = ({ notes, isToggled, handleToggle }: INoteListProps) => {
+const NoteList = ({ notes, handleToggle }: INoteListProps) => {
   return (
     <div className={styles.noteListContainer}>
       <div className={styles.noteListTopbar}>
-        <Toggle isToggled={isToggled} handleToggle={handleToggle} data-testid={'toggle'}/>
+        <Toggle handleToggle={handleToggle} data-testid={'toggle'}/>
       </div>
       <div className={styles.noteListContent}>
         {notes.length === 0 ? (

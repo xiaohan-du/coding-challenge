@@ -15,25 +15,25 @@ export const useAppState = (): IAppStateProps => {
   const [inputValue, setInputValue] = useState<INoteProps>(initialNoteProps);
   const [showResponseMessage, setShowResponseMessage] = useState<boolean>(false);
   const [isToggled, setIsToggled] = useState<boolean>(false);
-  const openModal = () => {
+  const openModal = (): void => {
     setResponseMessage('');
     setShowResponseMessage(false);
     setInputValue(initialNoteProps);
     setIsModalOpen(true);
   };
 
-  const closeModal = (event: React.FormEvent<HTMLButtonElement>) => {
+  const closeModal = (event: React.FormEvent<HTMLButtonElement>): void => {
     event.preventDefault();
     setIsModalOpen(false);
   };
   const calcDate = (nMonthsAhead: number): string => {
     const todaysDate = new Date();
     const nMonthAheadDate = todaysDate.setMonth(todaysDate.getMonth() - nMonthsAhead);
-    const nMonthAheadDateFormatted = new Date(nMonthAheadDate).toISOString().split('T')[0]
+    const nMonthAheadDateFormatted = new Date(nMonthAheadDate).toISOString().split('T')[0];
     return nMonthAheadDateFormatted;
   };
 
-  const fetchData = useCallback(async (nMonths: number) => {
+  const fetchData = useCallback(async (nMonths: number): Promise<void> => {
     const formattedDate = calcDate(nMonths);
     const apiUrlFrom = apiUrl + (nMonths !== 0 ? `/?from=${formattedDate}` : '');
     try {
@@ -60,12 +60,12 @@ export const useAppState = (): IAppStateProps => {
     fetchData(6);
   }, [fetchData]);
 
-  const handleLoadBtnClick = () => {
+  const handleLoadBtnClick = (): void => {
     setFetchPastNMonths(fetchPastNMonths === 0 ? 6 : 0);
     fetchData(fetchPastNMonths);
   };
 
-  const postData = async (noteData: INoteProps) => {
+  const postData = async (noteData: INoteProps): Promise<void> => {
     try {
       const response = await fetch(apiUrl, {
         method: 'POST',
@@ -87,7 +87,7 @@ export const useAppState = (): IAppStateProps => {
     }
   };
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>): void => {
     setInputValue((prevInputValue) => ({
       ...prevInputValue,
       note: event.target.value
@@ -95,7 +95,7 @@ export const useAppState = (): IAppStateProps => {
     setShowResponseMessage(false);
   };
 
-  const handleModalSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleModalSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
     const textarea = form.elements.namedItem("note") as HTMLTextAreaElement;
@@ -108,13 +108,12 @@ export const useAppState = (): IAppStateProps => {
     };
   };
 
-  const handleToggle = () => {
+  const handleToggle = (): void => {
     setIsToggled(!isToggled);
     handleLoadBtnClick();
   };
 
   return {
-    isToggled,
     handleToggle,
     notesData,
     responseMessage,

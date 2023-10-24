@@ -7,7 +7,6 @@ import Sidebar from "./components/Sidebar/Sidebar";
 
 function App() {
   const {
-    isToggled,
     handleToggle,
     notesData,
     responseMessage,
@@ -32,7 +31,7 @@ function App() {
         handleModalSubmit={handleModalSubmit}
         inputValue={inputValue}
       />
-        <NoteList notes={notesData} isToggled={isToggled} handleToggle={handleToggle}/>
+        <NoteList notes={notesData} handleToggle={handleToggle}/>
     </div>
   );
 }
